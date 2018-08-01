@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${account}">TODO supply a title</title>
+    </head>
+    <body>
+        <ol>
+            <li th:each="indeksi : ${accounlist}">
+                <span th:text="${indeksi}"/> 
+            </li>
+        </ol>
+        <p></p>
+        Create account:
+        <form th:action="@{/create}" method="POST">
+            <input type="text" name="name"/>
+            <input type="text" name="surname"/>
+            <input type="text" name="balance"/>
+            <input type="submit"/>
+        </form>
+        <p></p>
+        <form th:action="@{/transaction}" method="POST">
+          From (ID) <input type="text" name="id1"/>
+          to (ID)  <input type="text" name="id2"/>
+          Sum to transfer <input type="text" name="sum"/>
+          <input type="submit"/>    
+        </form>
+
+    </body>
+
+
+</html>
