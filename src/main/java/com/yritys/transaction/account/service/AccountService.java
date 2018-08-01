@@ -22,8 +22,8 @@ public class AccountService {
     @Autowired
     private AccountRepository accountrepository;
     
-    public void createAccount(String name, String surname, double balance) {
-        accountrepository.saveAndFlush(new Account(name, surname, balance));
+    public void createAccount(double balance) {
+        accountrepository.saveAndFlush(new Account(balance));
     }
     
     public List<Account> getAllAccounts() {

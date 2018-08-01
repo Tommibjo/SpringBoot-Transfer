@@ -18,41 +18,23 @@ public class Account extends AbstractPersistable<Long> {
 
     @Id
     private Long id;
-    private String name;
-    private String surname;
     private double balance;
 
     public Account() {
     }
 
-    public Account(String name, String surname, double balance) {
-        this.name = name;
-        this.surname = surname;
+    public Account(double balance) {
         this.balance = balance;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public double getBalance() {
@@ -65,7 +47,6 @@ public class Account extends AbstractPersistable<Long> {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", balance=" + balance + '}';
+        return "Account ID: " + id + ", balance: " + balance + "€";
     }
-
 }

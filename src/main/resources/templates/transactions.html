@@ -7,30 +7,51 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title th:text="${account}">TODO supply a title</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/transactions.css}"/>
     </head>
     <body>
         <ol>
+
             <li th:each="indeksi : ${accounlist}">
-                <span th:text="${indeksi}"/> 
+                <div class="list">
+                    <b>User ID <span th:text="${indeksi.id}"/>:</b><p></p><span th:text="${indeksi.name}"/>&nbsp;<span th:text="${indeksi.surname}"/>
+                    <!--   <span th:text="${indeksi.accounts}"/> -->
+                    <ol>
+                        <li th:each="indeksi : ${indeksi.accounts}">
+                            <span th:text="${indeksi}"/>
+                        </li>
+                    </ol>
+                </div>
             </li>
         </ol>
         <p></p>
-        Create account:
-        <form th:action="@{/create}" method="POST">
-            <input type="text" name="name"/>
-            <input type="text" name="surname"/>
-            <input type="text" name="balance"/>
-            <input type="submit"/>
-        </form>
+        <h3>Create account:</h3>
+        <div class='container'>
+            <form th:action="@{/create}" method="POST">
+                name: <input type="text" name="name"/>
+                surname: <input type="text" name="surname"/>
+                balance: <input type="text" name="balance"/>
+                <input type="submit"/>
+            </form> 
+        </div>
         <p></p>
-        <form th:action="@{/transaction}" method="POST">
-          From (ID) <input type="text" name="id1"/>
-          to (ID)  <input type="text" name="id2"/>
-          Sum to transfer <input type="text" name="sum"/>
-          <input type="submit"/>    
-        </form>
-
+        <h3>Add additional bank account to an account:</h3>
+        <div class='container'>
+            <form th:action="@{/add}" method="POST">
+                User ID:<input type="text" name="id"/>
+                balance: <input type="text" name="balance"/>
+                <input type="submit"/>
+            </form>
+        </div>
+        <p></p>
+        <h3>Transfer money:</h3>
+        <div class='container'>
+            <form th:action="@{/transaction}" method="POST">
+                From (Account ID) <input type="text" name="id1"/>
+                to (Account ID)  <input type="text" name="id2"/>
+                Sum to transfer <input type="text" name="sum"/>
+                <input type="submit"/>    
+            </form>
+        </div>
     </body>
-
-
 </html>
